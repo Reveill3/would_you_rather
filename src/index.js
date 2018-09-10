@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import reducer from './reducers/index'
 import middleware from './middleware'
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
 
 const store = createStore(reducer, middleware)
