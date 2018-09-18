@@ -6,9 +6,8 @@ import { connect } from 'react-redux'
 
 function NavBar () {
   return(
-    <div>
-      <Navs/>
-      <UserDisplay/>
+    <div className='border-bottom-4 border-success'>
+      <Navs />
     </div>
   )
 }

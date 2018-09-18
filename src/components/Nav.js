@@ -1,21 +1,24 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Nav, NavItem, NavLink } from 'reactstrap';
+import { Link } from 'react-router-dom'
+import UserDisplay from './UserDisplay'
 
 export default function Navs () {
   return(
-    <div>
-      <Nav tabs className='border-bottom-4 border-success'>
+    <div className='row'>
+      <Nav tabs className='col-10'>
         <NavItem>
-          <NavLink href="#">Home</NavLink>
+          <NavLink tag={Link} to="/">Home</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="#">New Question</NavLink>
+          <NavLink tag={Link} to="/new">New Question</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="#">Leaderboard</NavLink>
+          <NavLink tag={Link} to="/leaders">Leaderboard</NavLink>
         </NavItem>
       </Nav>
+      <UserDisplay className='col-2'/>
     </div>
   )
 }

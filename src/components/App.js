@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import  NavBar from './NavBar'
+import Login from './Login'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 class App extends Component {
   componentDidMount() {
@@ -10,9 +12,12 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <NavBar />
-      </div>
+      <Router>
+        <div>
+          <NavBar />
+          <Route path='/' exact component={Login}/>
+        </div>
+      </Router>
     );
   }
 }
