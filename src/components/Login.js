@@ -1,19 +1,37 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser'
+import { Redirect } from 'react-router-dom'
 
 
 class Login extends Component {
 
+  state = {
+    toDashboard: false,
+  }
+
   handleLogin = (e) => {
     const { dispatch, users, userids } = this.props
-    e.target.value != 'Select A User' ?
+    if (e.target.value !== 'Select A User') {
     dispatch(setAuthedUser(
       users[userids.filter((id) => users[id].name === e.target.value)]
-    )):dispatch(setAuthedUser(false))
+    ));
+  this.setState({
+    toDashboard: true
+  })
+  }
+  else {
+    dispatch(setAuthedUser(false));
+    this.setState({
+      toDashboard: false
+    })
+    }
   }
 
   render(){
+    if ( this.state.toDashboard ) {
+      return <Redirect to='/home'/>
+    } else {
 
     return(
     <div>
@@ -27,7 +45,9 @@ class Login extends Component {
       </select>
     </div>
   )
-}}
+    }
+  }
+}
 
 function mapStateToProps ({ users }) {
   return {

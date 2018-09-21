@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import  NavBar from './NavBar'
 import Login from './Login'
+import Dashboard from './Dashboard'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 class App extends Component {
@@ -16,6 +17,7 @@ class App extends Component {
         <div>
           <NavBar />
           <Route path='/' exact component={Login}/>
+          <Route path='/home'  component={Dashboard}/>
         </div>
       </Router>
     );
