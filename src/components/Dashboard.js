@@ -22,7 +22,8 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { authedUser } = this.props
+    const { authedUser, questions } = this.props
+    let unanswered_questions = Object.keys(questions)
     return(
       <div>
         <NavBar />
@@ -30,20 +31,24 @@ class Dashboard extends Component {
         <button onClick={ this.handleToggle } value='unanswered'>Unanswered Questions</button>
         { this.state.view === 'answered' ?
           Object.keys(authedUser.answers).map(id => {
-            console.log(id);
             return <QuestionPreview key={id} qid={id}/>
           }
-          )
-      : <div>Unanswered List Here</div>
+        ): ( Object.keys(authedUser.answers).map(aid => {
+              unanswered_questions = unanswered_questions.filter(qid => qid !== aid)
+      }),
+      unanswered_questions.map(id => <QuestionPreview key={id} qid={id}/> )
+
+    )
     }
       </div>
   )
 }
 }
 
-function mapStateToProps ({ authedUser }) {
+function mapStateToProps ({ authedUser, questions }) {
     return {
-      authedUser: authedUser
+      authedUser: authedUser,
+      questions: questions
     }
   }
 

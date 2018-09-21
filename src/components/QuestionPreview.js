@@ -6,7 +6,6 @@ class QuestionPreview extends Component {
 
   render() {
     const { qid, questions } = this.props
-    console.log(this.props)
     return(
       <NavLink to={`/question/${qid}`}>
         <div>

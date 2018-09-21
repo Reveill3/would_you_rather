@@ -15,17 +15,28 @@ class Question extends Component {
     return percent.toString()
   }
 
+  check_vote = (user, questionVotes) => {
+    if (questionVotes.includes(user.id)) {
+      return true
+    } else {
+      return false
+    }
+  }
+
   render() {
-    const optionOneVotes = this.props.questions[this.props.match.params.questionId].optionOne.votes.length
-    const optionTwoVotes = this.props.questions[this.props.match.params.questionId].optionTwo.votes.length
+    const optionOneVotes = this.props.questions[this.props.match.params.questionId].optionOne.votes
+    const optionTwoVotes = this.props.questions[this.props.match.params.questionId].optionTwo.votes
     const { questions } = this.props
     const { questionId } = this.props.match.params
+    const check = <img src='https://vignette.wikia.nocookie.net/outlast/images/f/f0/Check_mark.png/revision/latest/scale-to-width-down/60?cb=20140422222819'/>
     return(
         <div>
           <NavBar />
           <div>{questions[questionId].author } asked "Would you rather"?</div>
-          <Progress color="success" value={this.calculate_percent(optionOneVotes, optionTwoVotes, 'one')}>{questions[questionId].optionOne.text}</Progress>
-          <Progress color="success" value={this.calculate_percent(optionOneVotes, optionTwoVotes, 'two')}>{questions[questionId].optionTwo.text}</Progress>
+          <Progress color="success" value={this.calculate_percent(optionOneVotes.length, optionTwoVotes.length, 'one')}>{questions[questionId].optionOne.text}</Progress>
+          { this.check_vote(this.props.authedUser, optionOneVotes) ? check : '' }
+          <Progress color="success" value={this.calculate_percent(optionOneVotes.length, optionTwoVotes.length, 'two')}>{questions[questionId].optionTwo.text}</Progress>
+          { this.check_vote(this.props.authedUser, optionTwoVotes) ? check : '' }
         </div>
   )
 }
@@ -33,7 +44,8 @@ class Question extends Component {
 
 function mapStateToProps ({ questions, authedUser }) {
     return {
-      questions: questions
+      questions: questions,
+      authedUser: authedUser
     }
   }
 
