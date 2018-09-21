@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 
 class QuestionPreview extends Component {
 
@@ -7,9 +8,14 @@ class QuestionPreview extends Component {
     const { qid, questions } = this.props
     console.log(this.props)
     return(
-      <div>
-        { questions[qid].author } asked would you rather?
-      </div>
+      <NavLink to={`/question/${qid}`}>
+        <div>
+          <div>{ questions[qid].author } asked "Would you rather"?</div>
+          <span>{questions[qid].optionOne.text}</span>
+          <span>{questions[qid].optionTwo.text}</span>
+        </div>
+      </NavLink>
+
   )
 }
 }

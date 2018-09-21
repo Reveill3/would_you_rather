@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import QuestionPreview  from './QuestionPreview'
+import NavBar from './NavBar'
 
 
 class Dashboard extends Component {
@@ -24,6 +25,7 @@ class Dashboard extends Component {
     const { authedUser } = this.props
     return(
       <div>
+        <NavBar />
         <button onClick={ this.handleToggle } value='answered'>Answered Questions</button>
         <button onClick={ this.handleToggle } value='unanswered'>Unanswered Questions</button>
         { this.state.view === 'answered' ?

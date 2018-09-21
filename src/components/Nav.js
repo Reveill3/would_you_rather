@@ -9,7 +9,7 @@ export default function Navs () {
     <div className='row'>
       <Nav tabs className='col-10'>
         <NavItem>
-          <NavLink tag={Link} to="/">Home</NavLink>
+          <NavLink tag={Link} to="/home">Home</NavLink>
         </NavItem>
         <NavItem>
           <NavLink tag={Link} to="/new">New Question</NavLink>
