@@ -2,11 +2,17 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import QuestionPreview  from './QuestionPreview'
 import NavBar from './NavBar'
+import { setAuthedUser } from '../actions/authedUser'
 
 
 class Dashboard extends Component {
   state = {
-    view: 'answered'
+    view: 'unanswered'
+  }
+
+  componentDidMount(){
+    const {authedUser, users} = this.props
+    this.props.dispatch(setAuthedUser(users[authedUser.id]))
   }
 
   handleToggle = (e) => {
@@ -45,8 +51,9 @@ class Dashboard extends Component {
 }
 }
 
-function mapStateToProps ({ authedUser, questions }) {
+function mapStateToProps ({ authedUser, questions, users }) {
     return {
+      users: users,
       authedUser: authedUser,
       questions: questions
     }

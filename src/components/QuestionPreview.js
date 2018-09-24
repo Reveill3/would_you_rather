@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import Avatar from '@material-ui/core/Avatar';
 
 class QuestionPreview extends Component {
 
@@ -19,10 +20,11 @@ class QuestionPreview extends Component {
 }
 }
 
-function mapStateToProps ({ questions, authedUser }) {
+function mapStateToProps ({ questions, authedUser, users }) {
     return {
       authedUser: authedUser,
-      questions: questions
+      questions: questions,
+      users: users
     }
   }
 
