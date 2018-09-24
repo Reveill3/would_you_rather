@@ -36,10 +36,10 @@ class Dashboard extends Component {
         <button onClick={ this.handleToggle } value='answered'>Answered Questions</button>
         <button onClick={ this.handleToggle } value='unanswered'>Unanswered Questions</button>
         { this.state.view === 'answered' ?
-          Object.keys(authedUser.answers).map(id => {
+          Object.keys(authedUser.answers).sort((a,b) => questions[b].timestamp - questions[a].timestamp).map(id => {
             return <QuestionPreview key={id} qid={id}/>
           }
-        ): ( Object.keys(authedUser.answers).map(aid => {
+        ): ( Object.keys(authedUser.answers).sort((a,b) => questions[b].timestamp - questions[a].timestamp).map(aid => {
               unanswered_questions = unanswered_questions.filter(qid => qid !== aid)
       }),
       unanswered_questions.map(id => <QuestionPreview key={id} qid={id}/> )

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { setAuthedUser } from '../actions/authedUser'
-import Navs  from './Nav'
 
 
 class UserDisplay extends Component {

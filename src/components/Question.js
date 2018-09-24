@@ -3,12 +3,10 @@ import { connect } from 'react-redux'
 import NavBar from './NavBar'
 import { Progress, Button } from 'reactstrap'
 import { _saveQuestionAnswer } from '../utils/_DATA'
-import { handleInitialData } from '../actions/shared'
 import { receiveUsers } from '../actions/users'
 import { receiveQuestions } from '../actions/questions'
 import { _getUsers, _getQuestions } from '../utils/_DATA'
 import { setAuthedUser } from '../actions/authedUser'
-import { Redirect } from 'react-router-dom'
 import Avatar from '@material-ui/core/Avatar';
 
 
@@ -32,7 +30,7 @@ componentDidMount() {
 
   calculate_percent = (votesOne, votesTwo, value) => {
     let percent = 0
-    if (value == 'one') {
+    if (value === 'one') {
       percent = votesOne/(votesOne + votesTwo) * 100
     } else {
       percent = votesTwo/(votesOne + votesTwo) * 100
@@ -104,7 +102,7 @@ return(
             disabled={this.state.answered}>
             {  this.state.answered ?
                 <div>
-                  {this.questions[this.questionId].optionOne.text}
+                  {this.questions[this.questionId].optionTwo.text}
                 <Progress color="primary"
                   value={this.calculate_percent(this.optionOneVotes.length, this.optionTwoVotes.length, 'two')}>
                   {this.calculate_percent(this.optionOneVotes.length, this.optionTwoVotes.length, 'two') + '%'}
