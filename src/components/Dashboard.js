@@ -2,18 +2,33 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import QuestionPreview  from './QuestionPreview'
 import NavBar from './NavBar'
-import { setAuthedUser } from '../actions/authedUser'
+import { Button } from 'reactstrap'
 
 
 class Dashboard extends Component {
+
+  styles = {
+  card: {
+    minWidth: 275,
+  },
+  bullet: {
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)',
+  },
+  title: {
+    marginBottom: 16,
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+};
+
   state = {
-    view: 'unanswered'
+    view: 'unanswered',
   }
 
-  componentDidMount(){
-    const {authedUser, users} = this.props
-    this.props.dispatch(setAuthedUser(users[authedUser.id]))
-  }
 
   handleToggle = (e) => {
     if (e.target.value === 'answered') {
@@ -28,21 +43,22 @@ class Dashboard extends Component {
   }
 
   render() {
+
     const { authedUser, questions } = this.props
     let unanswered_questions = Object.keys(questions)
     return(
       <div>
-        <NavBar />
-        <button onClick={ this.handleToggle } value='answered'>Answered Questions</button>
-        <button onClick={ this.handleToggle } value='unanswered'>Unanswered Questions</button>
+        <NavBar/>
+        <Button color={this.state.view === 'answered' ? 'success':'info'} onClick={ this.handleToggle } value='answered'>Answered Questions</Button>
+        <Button color={this.state.view === 'unanswered' ? 'success':'info'} onClick={ this.handleToggle } value='unanswered'>Unanswered Questions</Button>
         { this.state.view === 'answered' ?
           Object.keys(authedUser.answers).sort((a,b) => questions[b].timestamp - questions[a].timestamp).map(id => {
-            return <QuestionPreview key={id} qid={id}/>
+            return <QuestionPreview key={id} qid={id} classes={this.styles}/>
           }
         ): ( Object.keys(authedUser.answers).sort((a,b) => questions[b].timestamp - questions[a].timestamp).map(aid => {
               unanswered_questions = unanswered_questions.filter(qid => qid !== aid)
       }),
-      unanswered_questions.map(id => <QuestionPreview key={id} qid={id}/> )
+      unanswered_questions.map(id => <QuestionPreview key={id} qid={id} classes={this.styles}/> )
 
     )
     }

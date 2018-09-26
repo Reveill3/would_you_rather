@@ -5,19 +5,20 @@ import UserDisplay from './UserDisplay'
 
 export default function Navs () {
   return(
-    <div className='row'>
-      <Nav tabs className='col-10'>
+    <div className='row w-100'>
+      <Nav  className='col-8' tabs >
         <NavItem>
-          <NavLink tag={Link} to="/home">Home</NavLink>
+          <NavLink className='d-inline-block' tag={Link} to="/home">Home</NavLink>
         </NavItem>
-        <NavItem>
+        <NavItem className='d-inline-block'>
           <NavLink tag={Link} to="/add">New Question</NavLink>
         </NavItem>
-        <NavItem>
-          <NavLink tag={Link} to="/leaders">Leaderboard</NavLink>
+        <NavItem className='d-inline-block'>
+          <NavLink tag={Link} to="/leaderboard">Leaderboard</NavLink>
         </NavItem>
+        <UserDisplay/>
       </Nav>
-      <UserDisplay className='col-2'/>
+
     </div>
   )
 }

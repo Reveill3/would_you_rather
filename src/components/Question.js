@@ -14,8 +14,9 @@ class Question extends Component {
 
 
   state = {
-    answered: false
+    answered: false,
   }
+
 
   questions  = this.props.questions
   questionId = this.props.match.params.questionId
@@ -76,43 +77,42 @@ componentDidMount() {
 
 
   render() {
-return(
-        <div>
-          <NavBar />
-          <Avatar src={this.props.users[this.props.questions[this.questionId].author].avatarURL} />
-          <div>{this.questions[this.questionId].author } asked "Would you rather"?</div>
-          <Button color={ this.check_user_answer('one') ? 'success':'info'} onClick={(e) => this.answer_question(e, this.props.authedUser.id, this.questionId,
-            'optionOne', this.optionOneVotes, this.optionTwoVotes)} disabled={this.state.answered}>
-            { this.state.answered ?
-              <div>
-                {this.questions[this.questionId].optionOne.text}
-                <Progress color="primary"
-                  value={this.calculate_percent(this.optionOneVotes.length, this.optionTwoVotes.length, 'one')}>
-                  {this.calculate_percent(this.optionOneVotes.length, this.optionTwoVotes.length, 'one') + '%'}
-                </Progress>
-                <div>{this.check_user_answer('one') ? 'Your Answer':''}   Votes: {this.optionOneVotes.length}</div>
-              </div>
-                : this.questions[this.questionId].optionOne.text }
+      return( <div>
+        <NavBar />
+        <Avatar src={this.props.users[this.props.questions[this.questionId].author].avatarURL} />
+        <div>{this.questions[this.questionId].author } asked "Would you rather"?</div>
+        <Button color={ this.check_user_answer('one') ? 'success':'info'} onClick={(e) => this.answer_question(e, this.props.authedUser.id, this.questionId,
+          'optionOne', this.optionOneVotes, this.optionTwoVotes)} disabled={this.state.answered}>
+          { this.state.answered ?
+            <div>
+              {this.questions[this.questionId].optionOne.text}
+              <Progress color="primary"
+                value={this.calculate_percent(this.optionOneVotes.length, this.optionTwoVotes.length, 'one')}>
+                {this.calculate_percent(this.optionOneVotes.length, this.optionTwoVotes.length, 'one') + '%'}
+              </Progress>
+              <div>{this.check_user_answer('one') ? 'Your Answer':''}   Votes: {this.optionOneVotes.length}</div>
+            </div>
+              : this.questions[this.questionId].optionOne.text }
 
-          </Button>
-          <Button
-            color={this.check_user_answer() ? 'success':'info'}
-            onClick={(e) => this.answer_question(e, this.props.authedUser.id, this.questionId,
-                      'optionTwo', this.optionOneVotes, this.optionTwoVotes)}
-            disabled={this.state.answered}>
-            {  this.state.answered ?
-                <div>
-                  {this.questions[this.questionId].optionTwo.text}
-                <Progress color="primary"
-                  value={this.calculate_percent(this.optionOneVotes.length, this.optionTwoVotes.length, 'two')}>
-                  {this.calculate_percent(this.optionOneVotes.length, this.optionTwoVotes.length, 'two') + '%'}
-                </Progress>
-                <div>{this.check_user_answer() ? 'Your Answer':''}   Votes: {this.optionTwoVotes.length}</div>
-                </div>
-                 : this.questions[this.questionId].optionTwo.text }
-          </Button>
-        </div>
-  )
+        </Button>
+        <Button
+          color={this.check_user_answer() ? 'success':'info'}
+          onClick={(e) => this.answer_question(e, this.props.authedUser.id, this.questionId,
+                    'optionTwo', this.optionOneVotes, this.optionTwoVotes)}
+          disabled={this.state.answered}>
+          {  this.state.answered ?
+              <div>
+                {this.questions[this.questionId].optionTwo.text}
+              <Progress color="primary"
+                value={this.calculate_percent(this.optionOneVotes.length, this.optionTwoVotes.length, 'two')}>
+                {this.calculate_percent(this.optionOneVotes.length, this.optionTwoVotes.length, 'two') + '%'}
+              </Progress>
+              <div>{this.check_user_answer() ? 'Your Answer':''}   Votes: {this.optionTwoVotes.length}</div>
+              </div>
+               : this.questions[this.questionId].optionTwo.text }
+        </Button>
+      </div>
+)
 }
 }
 

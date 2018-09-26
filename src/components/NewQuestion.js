@@ -4,11 +4,25 @@ import { Form, FormGroup, Label, Input, Button } from 'reactstrap'
 import NavBar from './NavBar'
 import { _saveQuestion } from '../utils/_DATA'
 import { addQuestion } from '../actions/questions'
+import { Redirect } from 'react-router-dom'
 
 class NewQuestion extends Component {
   state = {
     optionOne: '',
-    optionTwo: ''
+    optionTwo: '',
+    toDashboard: false,
+    loggedIn: false
+  }
+
+  componentWillMount(){
+    if (this.props.authedUser != null) {
+      this.setState({
+        loggedIn: true
+      })} else {
+        this.setState({
+          loggedIn: false
+        })
+      }
   }
 
 
@@ -21,6 +35,9 @@ class NewQuestion extends Component {
       author: user
     }).then((question) => {
       this.props.dispatch(addQuestion(question))
+      this.setState({
+        toDashboard: true
+      })
     }
     )
   }
@@ -32,6 +49,9 @@ class NewQuestion extends Component {
   }
 
   render() {
+    if ( this.state.toDashboard ) {
+      return <Redirect to='/home'/>
+    } else if (this.state.loggedIn) {
     return (
       <div>
         <NavBar></NavBar>
@@ -51,7 +71,10 @@ class NewQuestion extends Component {
         </Form>
       </div>
     );
+  } else {
+    return <Redirect to='/'/>
   }
+}
   }
 
 function mapStateToProps ({authedUser}) {

@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser'
 import { Redirect } from 'react-router-dom'
+import { Jumbotron, Button } from 'reactstrap'
+import LoginMenu from './LoginMenu'
 
 
 class Login extends Component {
@@ -10,15 +12,15 @@ class Login extends Component {
     toDashboard: false,
   }
 
-  handleLogin = (e) => {
-    const { dispatch, users, userids } = this.props
-    if (e.target.value !== 'Select A User') {
+  handleLogin = (name) => {
+    const { dispatch, users, userids} = this.props
+    if (name !== 'Select A User') {
     dispatch(setAuthedUser(
-      users[userids.filter((id) => users[id].name === e.target.value)]
+      users[userids.filter((id) => users[id].name === name)]
     ));
   this.setState({
     toDashboard: true
-  })
+  });
   }
   else {
     dispatch(setAuthedUser(false));
@@ -35,14 +37,12 @@ class Login extends Component {
 
     return(
     <div>
-      <div>Would You Rather?</div>
-      <div>Please Log In</div>
-      <select onChange={this.handleLogin}>
-        <option>Select A User</option>
-        {this.props.userids.map( (user) => (
-          <option key={this.props.users[user].id}>{this.props.users[user].name}</option>
-        ))}
-      </select>
+      <Jumbotron>
+        <div className='display-2'>Would You Rather?</div>
+        <div className='display-3'>Please Log In</div>
+        <hr className='my-2'/>
+        <LoginMenu userids={this.props.userids} handleChange={this.handleLogin}/>
+      </Jumbotron>
     </div>
   )
     }

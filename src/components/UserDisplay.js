@@ -13,11 +13,11 @@ class UserDisplay extends Component {
 
   render() {
     return(
-      <div>
+      <div className='col-4'>
         { this.props.authedUser ?
-          <div>
-          <div>Hello, { this.props.authedUser.name }</div>
-          <NavLink to='/' onClick={ this.handleLogOut }>Logout</NavLink>
+          <div className='row'>
+          <div className='pr-3'>Hello, { this.props.authedUser.name }</div>
+          <NavLink className='pl-3' to='/' onClick={ this.handleLogOut }>Logout</NavLink>
         </div>
           :
           <div></div>
