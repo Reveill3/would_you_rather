@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Avatar from '@material-ui/core/Avatar';
+import Avatar from '@material-ui/core/Avatar'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import Typography from '@material-ui/core/Typography'
 
 
 class Scorecard extends Component {
@@ -10,12 +13,24 @@ class Scorecard extends Component {
     const answerCount = Object.keys(this.props.users[this.props.userid].answers).length
 return (
   <div>
+    <Card className='scorecard'>
     <Avatar src={this.props.users[this.props.userid].avatarURL} />
-    <h1>{this.props.users[this.props.userid].name}</h1>
-    <h3>Questions: {questionCount}</h3>
-    <h3>Answers: {answerCount}</h3>
-    <h2>Score: {questionCount + answerCount}</h2>
-  </div>
+    <div className='details'>
+      <CardContent className='content'>
+        <Typography variant="headline">{this.props.users[this.props.userid].name}</Typography>
+        <Typography variant="subheading" color="textSecondary">
+        Questions: {questionCount}
+        </Typography>
+        <Typography variant="subheading" color="textSecondary">
+        Answers: {answerCount}
+        </Typography>
+        <Typography variant="subheading" color="textSecondary">
+        Score: {questionCount + answerCount}
+        </Typography>
+      </CardContent>
+    </div>
+  </Card>
+</div>
 )
 }
 }

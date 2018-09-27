@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { setAuthedUser } from '../actions/authedUser'
+import { PowerSettingsNew } from '@material-ui/icons';
 
 
 class UserDisplay extends Component {
@@ -17,7 +18,9 @@ class UserDisplay extends Component {
         { this.props.authedUser ?
           <div className='row'>
           <div className='pr-3'>Hello, { this.props.authedUser.name }</div>
-          <NavLink className='pl-3' to='/' onClick={ this.handleLogOut }>Logout</NavLink>
+          <NavLink className='pl-3' to='/' onClick={ this.handleLogOut }>
+            <PowerSettingsNew />
+          </NavLink>
         </div>
           :
           <div></div>

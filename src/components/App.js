@@ -22,7 +22,6 @@ class App extends Component {
       return (
           <Router>
             <ErrorCatch>
-              <div>
                 <Switch>
                   <Route path='/' exact component={Login}/>
                   <Route path='/home'  component={Dashboard}/>
@@ -30,7 +29,6 @@ class App extends Component {
                   <Route path='/add'  component={NewQuestion}/>
                   <Route path='/leaderboard' component={Leaderboard}/>
                 </Switch>
-              </div>
             </ErrorCatch>
           </Router>
         )
@@ -38,12 +36,11 @@ class App extends Component {
                 return (
               <Router>
                 <ErrorCatch>
-                  <div>
                   <Switch>
                     <Route path='/' exact component={Login}/>
+                    <Route path='/question/:questionId'  component={Question}/>
                     <Redirect to='/'/>
                   </Switch>
-                </div>
               </ErrorCatch>
             </Router>
               )

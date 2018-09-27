@@ -5,7 +5,7 @@ import UserDisplay from './UserDisplay'
 
 export default function Navs () {
   return(
-    <div className='row w-100'>
+    <div className='row w-100 border-bottom border-info'>
       <Nav  className='col-8' tabs >
         <NavItem>
           <NavLink className='d-inline-block' tag={Link} to="/home">Home</NavLink>
@@ -16,8 +16,8 @@ export default function Navs () {
         <NavItem className='d-inline-block'>
           <NavLink tag={Link} to="/leaderboard">Leaderboard</NavLink>
         </NavItem>
-        <UserDisplay/>
       </Nav>
+      <UserDisplay />
 
     </div>
   )

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Login from './Login'
 
 
 class ErrorCatch extends Component {
@@ -16,7 +17,11 @@ class ErrorCatch extends Component {
 
   render() {
     if (this.state.hasError) {
-      return <div>We can't find what you are looking for. :/. Please return to the home page and try again.</div>
+      return (
+        <div>
+          <Login error='true'/>
+        </div>
+      )
     } else {
       return this.props.children
   }}

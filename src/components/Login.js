@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser'
 import { Redirect } from 'react-router-dom'
-import { Jumbotron, Button } from 'reactstrap'
+import { Jumbotron } from 'reactstrap'
 import LoginMenu from './LoginMenu'
 
 
@@ -32,7 +32,14 @@ class Login extends Component {
 
   render(){
     if ( this.state.toDashboard ) {
+      if (this.props.error === 'true') {
+        return (
+        <div>
+          <div>We can't find what you are looking for. Please try again.</div>
+        </div>)
+      } else {
       return <Redirect to='/home'/>
+    }
     } else {
 
     return(

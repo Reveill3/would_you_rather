@@ -7,23 +7,6 @@ import { Button } from 'reactstrap'
 
 class Dashboard extends Component {
 
-  styles = {
-  card: {
-    minWidth: 275,
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
-  },
-  title: {
-    marginBottom: 16,
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-};
 
   state = {
     view: 'unanswered',
@@ -58,7 +41,7 @@ class Dashboard extends Component {
         ): ( Object.keys(authedUser.answers).sort((a,b) => questions[b].timestamp - questions[a].timestamp).map(aid => {
               unanswered_questions = unanswered_questions.filter(qid => qid !== aid)
       }),
-      unanswered_questions.map(id => <QuestionPreview key={id} qid={id} classes={this.styles}/> )
+      unanswered_questions.map(id => <QuestionPreview key={id} qid={id}/> )
 
     )
     }

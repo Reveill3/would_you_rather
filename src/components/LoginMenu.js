@@ -38,7 +38,7 @@ class LoginMenu extends React.Component {
           onClose={this.handleClose}
         >
           {this.props.userids.map( (user) => (
-          <MenuItem onClick={this.handleClose}>{this.props.users[user].name}</MenuItem>
+          <MenuItem key={user} onClick={this.handleClose}>{this.props.users[user].name}</MenuItem>
         ))
         }
         </Menu>
