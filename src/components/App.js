@@ -8,7 +8,6 @@ import NewQuestion from './NewQuestion'
 import ErrorCatch from './ErrorCatch'
 import Leaderboard from './Leaderboard'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { Redirect } from 'react-router-dom'
 
 class App extends Component {
 

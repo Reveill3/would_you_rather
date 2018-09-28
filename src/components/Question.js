@@ -8,9 +8,7 @@ import { receiveQuestions } from '../actions/questions'
 import { _getUsers, _getQuestions } from '../utils/_DATA'
 import { setAuthedUser } from '../actions/authedUser'
 import Avatar from '@material-ui/core/Avatar';
-import { Redirect, withRouter } from 'react-router-dom'
-import { handleInitialData } from '../actions/shared'
-import ErrorCatch from './ErrorCatch'
+import { Redirect } from 'react-router-dom'
 
 
 class Question extends Component {
