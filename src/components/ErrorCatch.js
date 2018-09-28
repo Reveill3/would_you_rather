@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Login from './Login'
+import Question from './Question'
 
 
 class ErrorCatch extends Component {
@@ -19,7 +19,7 @@ class ErrorCatch extends Component {
     if (this.state.hasError) {
       return (
         <div>
-          <Login error='true'/>
+          <Question error='true'/>
         </div>
       )
     } else {

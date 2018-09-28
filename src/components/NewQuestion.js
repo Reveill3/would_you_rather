@@ -72,7 +72,7 @@ class NewQuestion extends Component {
       </div>
     );
   } else {
-    return <Redirect to='/'/>
+    return <Redirect to={{pathname: '/', state: {path: this.props.location.pathname }}}/>
   }
 }
   }

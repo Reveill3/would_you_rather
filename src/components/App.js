@@ -18,36 +18,21 @@ class App extends Component {
 
 
   render() {
-    {if (this.props.authedUser != null){
       return (
           <Router>
             <ErrorCatch>
-                <Switch>
-                  <Route path='/' exact component={Login}/>
-                  <Route path='/home'  component={Dashboard}/>
+              <Switch>
+                <Route path='/' exact component={Login}/>
+                <Route path='/home'  component={Dashboard}/>
                   <Route path='/question/:questionId'  component={Question}/>
-                  <Route path='/add'  component={NewQuestion}/>
-                  <Route path='/leaderboard' component={Leaderboard}/>
-                </Switch>
-            </ErrorCatch>
+                <Route path='/add'  component={NewQuestion}/>
+                <Route path='/leaderboard' component={Leaderboard}/>
+              </Switch>
+              </ErrorCatch>
           </Router>
         )
-            } else {
-                return (
-              <Router>
-                <ErrorCatch>
-                  <Switch>
-                    <Route path='/' exact component={Login}/>
-                    <Route path='/question/:questionId'  component={Question}/>
-                    <Redirect to='/'/>
-                  </Switch>
-              </ErrorCatch>
-            </Router>
-              )
-            }
           }
       }
-    }
 
 function mapStateToProps ({authedUser}) {
   return {

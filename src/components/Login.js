@@ -9,8 +9,9 @@ import LoginMenu from './LoginMenu'
 class Login extends Component {
 
   state = {
-    toDashboard: false,
+    toDashboard: false
   }
+
 
   handleLogin = (name) => {
     const { dispatch, users, userids} = this.props
@@ -31,17 +32,11 @@ class Login extends Component {
   }
 
   render(){
+    console.log(this.props)
     if ( this.state.toDashboard ) {
-      if (this.props.error === 'true') {
-        return (
-        <div>
-          <div>We can't find what you are looking for. Please try again.</div>
-        </div>)
-      } else {
-      return <Redirect to='/home'/>
-    }
-    } else {
-
+            return <Redirect to={this.props.location.state ? this.props.location.state.path:'/home'}/>
+        }
+     else {
     return(
     <div>
       <Jumbotron>

@@ -7,7 +7,7 @@ export function handleInitialData () {
   return (dispatch) => {
     _getUsers().then(users => {
       dispatch(receiveUsers(users))
-    })
-    _getQuestions().then(questions => dispatch(receiveQuestions(questions)))
+    }).then(_getQuestions().then(questions => dispatch(receiveQuestions(questions))))
+
   }
 }

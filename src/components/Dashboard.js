@@ -26,7 +26,6 @@ class Dashboard extends Component {
   }
 
   render() {
-
     const { authedUser, questions } = this.props
     let unanswered_questions = Object.keys(questions)
     return(
@@ -35,10 +34,10 @@ class Dashboard extends Component {
         <Button color={this.state.view === 'answered' ? 'success':'info'} onClick={ this.handleToggle } value='answered'>Answered Questions</Button>
         <Button color={this.state.view === 'unanswered' ? 'success':'info'} onClick={ this.handleToggle } value='unanswered'>Unanswered Questions</Button>
         { this.state.view === 'answered' ?
-          Object.keys(authedUser.answers).sort((a,b) => questions[b].timestamp - questions[a].timestamp).map(id => {
+          Object.keys(authedUser.answers).sort((a,b) => questions[a].timestamp - questions[b].timestamp).map(id => {
             return <QuestionPreview key={id} qid={id} classes={this.styles}/>
           }
-        ): ( Object.keys(authedUser.answers).sort((a,b) => questions[b].timestamp - questions[a].timestamp).map(aid => {
+        ): ( Object.keys(authedUser.answers).sort((a,b) => questions[a].timestamp - questions[b].timestamp).map(aid => {
               unanswered_questions = unanswered_questions.filter(qid => qid !== aid)
       }),
       unanswered_questions.map(id => <QuestionPreview key={id} qid={id}/> )
