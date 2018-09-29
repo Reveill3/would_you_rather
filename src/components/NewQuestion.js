@@ -4,6 +4,7 @@ import { Form, FormGroup, Label, Input, Button } from 'reactstrap'
 import NavBar from './NavBar'
 import { _saveQuestion } from '../utils/_DATA'
 import { addQuestion } from '../actions/questions'
+import { updateUser } from '../actions/users'
 import { Redirect } from 'react-router-dom'
 
 class NewQuestion extends Component {
@@ -35,6 +36,7 @@ class NewQuestion extends Component {
       author: user
     }).then((question) => {
       this.props.dispatch(addQuestion(question))
+      this.props.dispatch(updateUser(user, question.id))
       this.setState({
         toDashboard: true
       })
@@ -77,9 +79,10 @@ class NewQuestion extends Component {
 }
   }
 
-function mapStateToProps ({authedUser}) {
+function mapStateToProps ({authedUser , users}) {
   return {
-  authedUser: authedUser
+  authedUser: authedUser,
+  users: users
   }
 }
 
