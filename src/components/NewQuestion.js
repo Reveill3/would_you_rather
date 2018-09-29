@@ -12,7 +12,8 @@ class NewQuestion extends Component {
     optionOne: '',
     optionTwo: '',
     toDashboard: false,
-    loggedIn: false
+    loggedIn: false,
+    validated: true
   }
 
   componentWillMount(){
@@ -30,7 +31,8 @@ class NewQuestion extends Component {
   addQuestion = (e, user) => {
     e.preventDefault()
     const { optionOne, optionTwo } = this.state
-    _saveQuestion({
+    if (optionOne && optionTwo !== '')
+{    _saveQuestion({
       optionOneText: optionOne,
       optionTwoText: optionTwo,
       author: user
@@ -41,7 +43,11 @@ class NewQuestion extends Component {
         toDashboard: true
       })
     }
-    )
+  )} else {
+    this.setState({
+      validated: false
+    })
+  }
   }
 
   handleChange = (event, option) => {
@@ -61,10 +67,12 @@ class NewQuestion extends Component {
           <h3>Would You Rather?</h3>
           <FormGroup>
             <Label for='optionOne'>First Option</Label>
+            {this.state.validated ? null: <div>You must enter and option.</div>}
             <Input type='text' name='optionOne' id='optionOne' placeholder='Insert First Option Here' onChange={(event) => this.handleChange(event, 'optionOne')}/>
           </FormGroup>
           <FormGroup>
             <Label for='optionOne'>Second Option</Label>
+            {this.state.validated ? null: <div>You must enter and option.</div>}
             <Input type='text' name='optionTwo' id='optionTwo' placeholder='Insert Second Option Here' onChange={(event) => this.handleChange(event, 'optionTwo')}/>
           </FormGroup>
           <Button color='info' onClick={(e) => this.addQuestion(e, this.props.authedUser.id)}>
