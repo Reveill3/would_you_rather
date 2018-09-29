@@ -67,12 +67,12 @@ class NewQuestion extends Component {
           <h3>Would You Rather?</h3>
           <FormGroup>
             <Label for='optionOne'>First Option</Label>
-            {this.state.validated ? null: <div>You must enter and option.</div>}
+            {this.state.validated ? null: <div>You must enter two options.</div>}
             <Input type='text' name='optionOne' id='optionOne' placeholder='Insert First Option Here' onChange={(event) => this.handleChange(event, 'optionOne')}/>
           </FormGroup>
           <FormGroup>
             <Label for='optionOne'>Second Option</Label>
-            {this.state.validated ? null: <div>You must enter and option.</div>}
+            {this.state.validated ? null: <div>You must enter two options.</div>}
             <Input type='text' name='optionTwo' id='optionTwo' placeholder='Insert Second Option Here' onChange={(event) => this.handleChange(event, 'optionTwo')}/>
           </FormGroup>
           <Button color='info' onClick={(e) => this.addQuestion(e, this.props.authedUser.id)}>
